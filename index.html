@@ -103,9 +103,13 @@ section{padding:85px 8%}
 
 .menu-section{background:#f3ead9}
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+
+/* ИСПРАВЛЕНИЕ: Добавлен Flexbox для выравнивания кнопок */
 .food-card{
  background:var(--white);border-radius:4px;overflow:hidden;
- box-shadow:0 5px 20px #39250c0d;transition:.25s;min-width:0
+ box-shadow:0 5px 20px #39250c0d;transition:.25s;min-width:0;
+ display: flex;
+ flex-direction: column;
 }
 .food-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px #39250c19}
 
@@ -116,10 +120,20 @@ section{padding:85px 8%}
  object-position: center;
 }
 
-.food-info{padding:21px}
+.food-info{
+ padding:21px;
+ display: flex;
+ flex-direction: column;
+ flex-grow: 1; /* Растягивает блок с текстом */
+}
 .food-info h3{font-family:'Playfair Display';font-size:20px;margin:0 0 8px}
-.food-info p{font-size:12px;line-height:1.7;color:var(--muted);min-height:40px}
-.food-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:17px}
+.food-info p{font-size:12px;line-height:1.7;color:var(--muted);} /* Убран min-height */
+
+.food-bottom{
+ display:flex;justify-content:space-between;align-items:center;
+ margin-top: auto; /* Прижимает кнопку к низу */
+ padding-top: 17px;
+}
 .price{color:var(--red);font-weight:800;font-size:12px}
 .add-btn{background:var(--red);color:white;border:0;border-radius:3px;padding:10px 14px;font-size:11px;font-weight:800}
 .add-btn:hover{background:var(--darkred)}
@@ -229,10 +243,21 @@ footer a:hover{color:white}
  .strip{gap:15px 25px;font-size:9px}
 
  .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .food-card img{height:125px; object-fit:cover;}
+ 
+ /* ИСПРАВЛЕНИЕ: Фото вписываются целиком и не обрезаются */
+ .food-card img{height:150px; object-fit:contain; background-color:var(--white); padding:5px;}
+ 
+ /* ИСПРАВЛЕНИЕ: Последняя карточка (если она одна в ряду) растягивается на всю ширину */
+ .food-card:last-child:nth-child(odd) {
+   grid-column: 1 / -1;
+ }
+ .food-card:last-child:nth-child(odd) img {
+   height: 220px; 
+ }
+
  .food-info{padding:11px}
  .food-info h3{font-size:15px;line-height:1.3}
- .food-info p{font-size:11px;min-height:65px}
+ .food-info p{font-size:11px;} /* Убран min-height */
  .food-bottom{flex-direction:column;align-items:flex-start;gap:9px}
  .add-btn{width:100%;padding:10px 5px}
 
@@ -371,7 +396,6 @@ footer a:hover{color:white}
  <p class="menu-note">Menu items and availability may vary. Please contact us for current prices and daily specials.</p>
 </section>
 
-<!-- БЛОК БЕЗ ИЗОБРАЖЕНИЯ -->
 <section class="special">
  <div class="special-copy">
   <div class="eyebrow">YOUR NEXT FAVORITE MEAL</div>
@@ -559,8 +583,9 @@ function filterMenu(category,button){
  button.classList.add('active');
 
  document.querySelectorAll('.food-card').forEach(card=>{
+  // ИСПРАВЛЕНИЕ: Используем 'flex' вместо 'block', чтобы не ломать верстку
   card.style.display=
-   category==='all'||card.dataset.category===category?'block':'none';
+   category==='all'||card.dataset.category===category?'flex':'none';
  });
 }
 

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#982b30">
+<title>The Lucky 7 Cafe | Shelbyville, Indiana</title>
+<meta name="description" content="Visit The Lucky 7 Cafe in Shelbyville, Indiana for classic American comfort food, breakfast and lunch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Rye&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --red:#982b30;
+  --darkred:#6f171e;
+  --cream:#fff8e9;
+  --gold:#d9a84e;
+  --ink:#25201c;
+  --muted:#746b60;
+  --white:#fffdf8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+
+.topbar{
+ background:var(--darkred);color:white;text-align:center;
+ padding:9px;font-size:12px;letter-spacing:1.5px;font-weight:700
+}
+header{
+ height:82px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 7%;background:var(--cream);position:sticky;top:0;
+ z-index:20;box-shadow:0 2px 12px #00000012
+}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-icon{
+ width:49px;height:49px;border:2px solid var(--gold);
+ border-radius:50%;background:var(--red);color:white;
+ display:grid;place-items:center;font-family:'Rye';font-size:23px
+}
+.logo-text{font-family:'Rye';font-size:19px;line-height:1.2;color:var(--red)}
+.logo-text small{
+ display:block;font-family:'DM Sans';font-size:9px;
+ letter-spacing:3px;color:var(--ink);text-align:center;margin-top:3px
+}
+nav{display:flex;align-items:center;gap:20px;font-size:12px;font-weight:700}
+nav a:hover{color:var(--red)}
+.nav-cta,.btn{
+ background:var(--red);color:white;padding:14px 20px;border:0;
+ font-weight:800;font-size:11px;letter-spacing:1px;
+ border-radius:3px;display:inline-block;transition:.2s
+}
+.nav-cta:hover,.btn:hover{background:var(--darkred);transform:translateY(-2px)}
+.btn-outline{
+ display:inline-block;border:1px solid white;color:white;
+ padding:13px 22px;margin-left:10px;font-size:12px;font-weight:800
+}
+.menu-toggle{display:none;background:none;border:0;font-size:27px}
+
+.hero{
+ min-height:570px;position:relative;display:flex;align-items:center;
+ color:white;
+ background:linear-gradient(90deg,#17110eea 0%,#17110eb8 47%,#17110e18 100%),
+ url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1800&q=85') center/cover
+}
+.hero-content{max-width:680px;padding:75px 8%}
+.eyebrow{font-size:11px;letter-spacing:3px;font-weight:800;color:var(--gold)}
+.hero h1{font-family:'Rye';font-size:clamp(42px,6vw,76px);line-height:1.12;margin:20px 0}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:16px;line-height:1.8;color:#f0e8dd;max-width:470px;margin-bottom:30px}
+.hero-stamp{
+ position:absolute;right:9%;bottom:45px;width:120px;height:120px;
+ border:2px dashed var(--gold);border-radius:50%;display:grid;
+ place-items:center;text-align:center;color:var(--gold);
+ font-family:'Rye';font-size:17px;transform:rotate(12deg);
+ background:#17110e77
+}
+.strip{
+ background:var(--red);color:white;display:flex;justify-content:center;
+ gap:65px;flex-wrap:wrap;padding:18px 20px;
+ font-size:11px;letter-spacing:1.5px;font-weight:800
+}
+.strip span:before{content:'✦';color:var(--gold);margin-right:10px}
+
+section{padding:85px 8%}
+.section-head{text-align:center;max-width:650px;margin:0 auto 45px}
+.section-head .eyebrow{color:var(--red)}
+.section-head h2{font-family:'Rye';font-size:clamp(29px,4vw,43px);margin:13px 0}
+.section-head p{color:var(--muted);line-height:1.7;font-size:14px}
+
+.story{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}
+.story-img{height:440px;position:relative}
+.story-img img{width:100%;height:100%;object-fit:cover;border-radius:4px}
+.story-img:after{
+ content:'';position:absolute;inset:15px -15px -15px 15px;
+ border:2px solid var(--gold);z-index:-1
+}
+.story-copy h2{font-family:'Rye';font-size:38px;line-height:1.2}
+.story-copy p{color:var(--muted);font-size:14px;line-height:1.9}
+.signature{color:var(--red);font-family:'Playfair Display';font-weight:800;font-size:20px;margin-top:25px}
+
+.menu-section{background:#f3ead9}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.food-card{
+ background:var(--white);border-radius:4px;overflow:hidden;
+ box-shadow:0 5px 20px #39250c0d;transition:.25s;min-width:0
+}
+.food-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px #39250c19}
+
+.food-card img {
+ width: 100%;
+ height: 300px; 
+ object-fit: cover;
+ object-position: center;
+}
+
+.food-info{padding:21px}
+.food-info h3{font-family:'Playfair Display';font-size:20px;margin:0 0 8px}
+.food-info p{font-size:12px;line-height:1.7;color:var(--muted);min-height:40px}
+.food-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:17px}
+.price{color:var(--red);font-weight:800;font-size:12px}
+.add-btn{background:var(--red);color:white;border:0;border-radius:3px;padding:10px 14px;font-size:11px;font-weight:800}
+.add-btn:hover{background:var(--darkred)}
+.menu-tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.tab{
+ background:transparent;border:1px solid #d5c7b2;padding:11px 20px;
+ font-size:11px;font-weight:800;letter-spacing:1px;color:var(--ink)
+}
+.tab.active,.tab:hover{background:var(--red);border-color:var(--red);color:white}
+.menu-note{text-align:center;font-size:11px;color:var(--muted);margin-top:25px}
+
+/* БЛОК SPECIAL БЕЗ ИЗОБРАЖЕНИЯ (ЦЕНТРИРОВАННЫЙ ТЕКСТ) */
+.special{
+ background:var(--red);
+ color:white;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ padding:70px 8%;
+}
+.special-copy{
+ max-width: 700px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+}
+.special-copy .eyebrow{color:var(--gold)}
+.special-copy h2{font-family:'Rye';font-size:39px;line-height:1.2;margin:17px 0}
+.special-copy p{color:#f4dede;font-size:14px;line-height:1.8;margin-bottom:20px;}
+.special-copy .btn{background:var(--gold);color:var(--ink);}
+
+.reviews{background:var(--white)}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review{padding:28px;background:var(--cream);border-top:3px solid var(--gold);min-width:0}
+.stars{color:#d39b32;letter-spacing:3px}
+.review p{font-family:'Playfair Display';font-size:16px;line-height:1.7}
+.review small{font-weight:800;color:var(--red);font-size:11px}
+
+.visit{background:#f3ead9}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px}
+.visit-card{padding:35px;background:var(--white);min-width:0}
+.visit-card h3{font-family:'Rye';font-size:25px}
+.visit-row{display:flex;gap:15px;padding:15px 0;border-bottom:1px solid #e9dfd0;font-size:13px}
+.visit-row b{min-width:95px;color:var(--red)}
+.visit-card p{font-size:13px;color:var(--muted);line-height:1.8}
+.contact-form{display:grid;gap:13px;margin-top:20px}
+.contact-form input,.contact-form select,.contact-form textarea{
+ width:100%;min-width:0;padding:13px;border:1px solid #e4d9c9;
+ background:#fffdf9;font-family:inherit;font-size:13px;border-radius:2px
+}
+.contact-form textarea{min-height:90px;resize:vertical}
+#guestDate{font-family:'DM Sans',sans-serif;color:var(--ink)}
+.form-status{font-size:12px;line-height:1.6;color:var(--red);font-weight:700}
+
+footer{background:#211a17;color:white;padding:50px 8% 20px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+footer h3{font-family:'Rye';color:var(--gold);font-size:22px}
+footer p,footer a{font-size:12px;color:#c9bdb1;line-height:2}
+footer a:hover{color:white}
+.copyright{border-top:1px solid #51443a;margin-top:35px;padding-top:20px;text-align:center;color:#8e8075;font-size:10px}
+
+.cart{
+ position:fixed;right:20px;bottom:20px;z-index:30;
+ background:var(--red);color:white;border:0;border-radius:50px;
+ padding:15px 22px;box-shadow:0 5px 20px #0004;font-size:12px;font-weight:800
+}
+.cart-count{background:var(--gold);color:var(--ink);border-radius:50%;padding:4px 7px;margin-left:8px}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:50;align-items:center;justify-content:center;padding:15px}
+.modal.open{display:flex}
+.modal-box{background:var(--cream);padding:30px;width:100%;max-width:500px;max-height:90vh;overflow:auto;border-radius:4px}
+.modal-head{display:flex;justify-content:space-between;align-items:center}
+.modal-head h2{font-family:'Rye'}
+.close{background:none;border:0;font-size:25px}
+.cart-line{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #ddd;gap:10px}
+.cart-line button{border:0;background:none;color:var(--red)}
+
+@media(max-width:800px){
+ header{padding:0 5%;height:72px}
+ .menu-toggle{display:block}
+ nav{
+  display:none;position:absolute;top:72px;left:0;right:0;
+  background:var(--cream);padding:25px;flex-direction:column;
+  align-items:stretch;gap:20px;box-shadow:0 8px 12px #0002
+ }
+ nav.show{display:flex}
+ .hero{min-height:550px;background-position:60% center}
+ .hero-content{padding:65px 7%}
+ .hero-stamp{display:none}
+ section{padding:65px 6%}
+ .story{grid-template-columns:1fr;gap:35px}
+ .story-img{height:300px}
+ .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ 
+ .special{padding:50px 6%;}
+ .special-copy h2{font-size:32px;}
+ 
+ .review-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .visit-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:520px){
+ .hero h1{font-size:43px}
+ .hero p{font-size:14px}
+ .strip{gap:15px 25px;font-size:9px}
+
+ .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .food-card img{height:125px; object-fit:cover;}
+ .food-info{padding:11px}
+ .food-info h3{font-size:15px;line-height:1.3}
+ .food-info p{font-size:11px;min-height:65px}
+ .food-bottom{flex-direction:column;align-items:flex-start;gap:9px}
+ .add-btn{width:100%;padding:10px 5px}
+
+ .review-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .review{padding:13px}
+ .review p{font-size:13px}
+ .review small{font-size:9px}
+
+ .visit-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .visit-card{padding:13px}
+ .visit-card h3{font-size:18px}
+ .visit-row{flex-direction:column;gap:5px;font-size:11px}
+ .contact-form{gap:10px}
+ .contact-form input,.contact-form select,.contact-form textarea{font-size:11px;padding:10px 7px}
+ .contact-form .btn{padding:12px 5px;font-size:10px}
+ .footer-grid{grid-template-columns:1fr}
+ .btn-outline{margin:12px 0 0}
+}
+</style>
+</head>
+
+<body>
+<div class="topbar">WELCOME TO YOUR HOMETOWN FAVORITE · SHELBYVILLE, INDIANA</div>
+
+<header>
+ <a class="logo" href="#home">
+  <div class="logo-icon">7</div>
+  <div class="logo-text">THE LUCKY 7 CAFE<small>GOOD FOOD · GOOD TIMES</small></div>
+ </a>
+ <button class="menu-toggle" aria-label="Open navigation" onclick="document.querySelector('nav').classList.toggle('show')">☰</button>
+ <nav>
+  <a href="#home">HOME</a>
+  <a href="#about">OUR STORY</a>
+  <a href="#menu">MENU</a>
+  <a href="#reviews">REVIEWS</a>
+  <a href="#visit">CONTACT</a>
+  <a href="#reservationForm">RESERVATIONS</a>
+  <a class="nav-cta" href="#menu">ORDER PICKUP ↗</a>
+ </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="hero-content">
+  <div class="eyebrow">★ A LITTLE TASTE OF HOMETOWN HAPPINESS ★</div>
+  <h1>Good Food.<br><span>Lucky Moments.</span></h1>
+  <p>From hearty breakfasts to classic American comfort food, there's always something delicious waiting for you at The Lucky 7 Cafe.</p>
+  <a class="btn" href="#menu">EXPLORE OUR MENU</a>
+  <a class="btn-outline" href="#visit">FIND US</a>
+ </div>
+ <div class="hero-stamp">FRESH FOOD<br>HAPPY HEARTS<br>EST. WITH LOVE</div>
+</section>
+
+<div class="strip">
+ <span>HOMEMADE GOODNESS</span>
+ <span>CLASSIC AMERICAN FOOD</span>
+ <span>LOCAL HOSPITALITY</span>
+</div>
+
+<section id="about">
+ <div class="story">
+  <div class="story-img">
+   <img src="strawberry-shake.jpg" alt="Strawberry milkshake">
+  </div>
+  <div class="story-copy">
+   <div class="eyebrow">MORE THAN JUST A MEAL</div>
+   <h2>Your Neighborhood Cafe, Your Happy Place.</h2>
+   <p>There's something special about a place where good food meets a warm welcome. At The Lucky 7 Cafe, we're all about bringing people together over delicious, satisfying American favorites.</p>
+   <p>Whether you're stopping by for breakfast, grabbing lunch with friends, or treating yourself to a classic diner favorite, we're happy to have you at our table.</p>
+   <div class="signature">Come hungry. Leave happy. ❤️</div>
+  </div>
+ </div>
+</section>
+
+<section class="menu-section" id="menu">
+ <div class="section-head">
+  <div class="eyebrow">MADE TO MAKE YOU SMILE</div>
+  <h2>Something Delicious Is Waiting</h2>
+  <p>From breakfast classics to satisfying lunch favorites, discover the comfort food you love.</p>
+ </div>
+
+ <div class="menu-tabs">
+  <button class="tab active" onclick="filterMenu('all',this)">ALL FAVORITES</button>
+  <button class="tab" onclick="filterMenu('lunch',this)">LUNCH</button>
+  <button class="tab" onclick="filterMenu('breakfast',this)">BREAKFAST</button>
+ </div>
+
+ <div class="menu-grid" id="menuGrid">
+  
+  <article class="food-card" data-category="breakfast">
+   <img src="french-toast.jpg" alt="French toast breakfast">
+   <div class="food-info">
+    <h3>French Toast</h3>
+    <p>Golden, sweet and perfect for starting your morning right.</p>
+    <div class="food-bottom"><span class="price">PRICE</span><button class="add-btn" onclick="addItem('French Toast')">+ ADD</button></div>
+   </div>
+  </article>
+
+  <article class="food-card" data-category="breakfast">
+   <img src="waffle.jpg" alt="Belgian Waffle breakfast">
+   <div class="food-info">
+    <h3>Belgian Waffle</h3>
+    <p>Crispy outside, fluffy inside, served with warm syrup.</p>
+    <div class="food-bottom"><span class="price">PRICE</span><button class="add-btn" onclick="addItem('Belgian Waffle')">+ ADD</button></div>
+   </div>
+  </article>
+
+  <article class="food-card" data-category="lunch">
+   <img src="salad.jpg" alt="Apple Pecan Chicken Salad">
+   <div class="food-info">
+    <h3>Apple Pecan Salad</h3>
+    <p>Grilled chicken, crisp apples, pecans, and blue cheese over fresh greens.</p>
+    <div class="food-bottom"><span class="price">PRICE</span><button class="add-btn" onclick="addItem('Apple Pecan Salad')">+ ADD</button></div>
+   </div>
+  </article>
+
+  <article class="food-card" data-category="lunch">
+   <img src="milkshakes.jpg" alt="Hand-Spun Milkshakes">
+   <div class="food-info">
+    <h3>Hand-Spun Milkshakes</h3>
+    <p>Classic flavors made fresh. Oreo, Strawberry, and Cookie.</p>
+    <div class="food-bottom"><span class="price">PRICE</span><button class="add-btn" onclick="addItem('Hand-Spun Milkshakes')">+ ADD</button></div>
+   </div>
+  </article>
+
+  <article class="food-card" data-category="lunch">
+   <img src="sundae.jpg" alt="Hot Fudge Sundae">
+   <div class="food-info">
+    <h3>Hot Fudge Sundae</h3>
+    <p>Creamy vanilla ice cream topped with rich chocolate and sprinkles.</p>
+    <div class="food-bottom"><span class="price">PRICE</span><button class="add-btn" onclick="addItem('Hot Fudge Sundae')">+ ADD</button></div>
+   </div>
+  </article>
+
+ </div>
+ <p class="menu-note">Menu items and availability may vary. Please contact us for current prices and daily specials.</p>
+</section>
+
+<!-- БЛОК БЕЗ ИЗОБРАЖЕНИЯ -->
+<section class="special">
+ <div class="special-copy">
+  <div class="eyebrow">YOUR NEXT FAVORITE MEAL</div>
+  <h2>Craving Something Good?</h2>
+  <p>Skip the scrolling and find your next favorite meal. Explore our menu and get in touch to arrange a convenient pickup.</p>
+  <a class="btn" href="#menu">SEE WHAT'S COOKING</a>
+ </div>
+</section>
+
+<section class="reviews" id="reviews">
+ <div class="section-head">
+  <div class="eyebrow">KIND WORDS FROM OUR GUESTS</div>
+  <h2>Made Better By You</h2>
+  <p>Good food is even better when shared with a great community.</p>
+ </div>
+ <div class="review-grid">
+  <div class="review">
+   <div class="stars">★★★★★</div>
+   <p>"A great local spot with delicious food and a welcoming atmosphere!"</p>
+   <small>— A HAPPY GUEST</small>
+  </div>
+  <div class="review">
+   <div class="stars">★★★★★</div>
+   <p>"Love finding a place that serves classic comfort food. Definitely worth a visit!"</p>
+   <small>— A HAPPY GUEST</small>
+  </div>
+  <div class="review">
+   <div class="stars">★★★★★</div>
+   <p>"Friendly hometown vibes and a menu full of favorites."</p>
+   <small>— A HAPPY GUEST</small>
+  </div>
+ </div>
+ <p class="menu-note">Sample review layout — replace with verified customer reviews before publishing.</p>
+</section>
+
+<section class="visit" id="visit">
+ <div class="section-head">
+  <div class="eyebrow">WE CAN'T WAIT TO SEE YOU</div>
+  <h2>Come On In!</h2>
+  <p>Have a question, want to plan a visit, or need to check today's hours? We'd love to hear from you.</p>
+ </div>
+
+ <div class="visit-grid">
+  <div class="visit-card">
+   <h3>Find Your Lucky Spot</h3>
+   <div class="visit-row"><b>ADDRESS</b><span>418 Miller Ave<br>Shelbyville, IN 46176</span></div>
+   <div class="visit-row"><b>PHONE</b><a href="tel:+13176045085">(317) 604-5085</a></div>
+   <div class="visit-row"><b>HOURS</b><span>Please call us for today's opening hours.</span></div>
+   <p>Come visit us in Shelbyville and enjoy some good old-fashioned hometown hospitality.</p>
+   <a class="btn" href="https://www.google.com/maps/search/?api=1&query=418+Miller+Ave+Shelbyville+IN+46176" target="_blank">GET DIRECTIONS ↗</a>
+   <p><a href="https://www.facebook.com/thelucky7cafe" target="_blank">Visit us on Facebook ↗</a></p>
+  </div>
+
+  <div class="visit-card" id="reservation">
+   <h3>Request a Table</h3>
+   <p>Planning a visit? Send us a reservation request. We'll need to confirm availability by phone.</p>
+
+   <form class="contact-form" id="reservationForm">
+    <input required placeholder="Your name" id="guestName">
+    <input required type="tel" placeholder="Phone number" id="guestPhone">
+    <input required type="date" id="guestDate" lang="en-US" aria-label="Reservation date">
+    <select id="guestTime" required>
+     <option value="">Preferred time</option>
+     <option>Breakfast</option>
+     <option>Lunch</option>
+     <option>Other / Flexible</option>
+    </select>
+    <select id="guestCount">
+     <option value="1">1 guest</option>
+     <option value="2" selected>2 guests</option>
+     <option value="3">3 guests</option>
+     <option value="4">4 guests</option>
+     <option value="5">5 guests</option>
+     <option value="6+">6+ guests</option>
+    </select>
+    <textarea placeholder="Special requests (optional)" id="guestNotes"></textarea>
+    <button class="btn" type="submit">REQUEST A TABLE</button>
+    <div class="form-status" id="reservationStatus"></div>
+   </form>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="footer-grid">
+  <div>
+   <h3>The Lucky 7 Cafe</h3>
+   <p>Good food. Lucky moments. Your neighborhood spot for classic American comfort food in Shelbyville, Indiana.</p>
+  </div>
+  <div>
+   <h3>Explore</h3>
+   <p>
+    <a href="#home">Home</a><br>
+    <a href="#about">Our Story</a><br>
+    <a href="#menu">Our Menu</a><br>
+    <a href="#reviews">Reviews</a>
+   </p>
+  </div>
+  <div>
+   <h3>Say Hello</h3>
+   <p>
+    418 Miller Ave<br>Shelbyville, IN 46176<br>
+    <a href="tel:+13176045085">(317) 604-5085</a><br>
+    <a href="https://www.facebook.com/thelucky7cafe" target="_blank">Facebook ↗</a>
+   </p>
+  </div>
+ </div>
+ <div class="copyright">© 2026 THE LUCKY 7 CAFE · MADE WITH LOVE AND A LITTLE LUCK.</div>
+</footer>
+
+<button class="cart" onclick="openCart()">🛍 PICKUP ORDER <span class="cart-count" id="cartCount">0</span></button>
+
+<div class="modal" id="cartModal">
+ <div class="modal-box">
+  <div class="modal-head">
+   <h2>Your Order</h2>
+   <button class="close" onclick="closeCart()">×</button>
+  </div>
+  <div id="cartItems"><p>Your basket is waiting for something delicious!</p></div>
+  <p style="font-size:12px;color:#746b60">Prices and availability need to be confirmed by the cafe.</p>
+
+  <form class="contact-form" id="orderForm">
+   <input id="orderName" required placeholder="Your name">
+   <input id="orderPhone" required type="tel" placeholder="Your phone number">
+   <select id="pickupTime" required>
+    <option value="">Preferred pickup time</option>
+    <option>As soon as possible</option>
+    <option>In 30 minutes</option>
+    <option>In 1 hour</option>
+    <option>I'll arrange by phone</option>
+   </select>
+   <textarea id="orderNotes" placeholder="Special instructions"></textarea>
+   <button class="btn" type="submit">PREPARE MY PICKUP REQUEST</button>
+   <div class="form-status" id="orderStatus"></div>
+  </form>
+  <p style="font-size:12px"><a href="tel:+13176045085">Prefer to order by phone? Call (317) 604-5085</a></p>
+ </div>
+</div>
+
+<script>
+let basket=[];
+
+function addItem(name){
+ basket.push(name);
+ updateCart();
+}
+
+function updateCart(){
+ document.getElementById('cartCount').textContent=basket.length;
+ const container=document.getElementById('cartItems');
+
+ if(!basket.length){
+  container.innerHTML='<p>Your basket is waiting for something delicious!</p>';
+  return;
+ }
+
+ container.innerHTML=basket.map((item,i)=>`
+  <div class="cart-line">
+   <span>${item}</span>
+   <button onclick="removeItem(${i})">REMOVE ×</button>
+  </div>
+ `).join('');
+}
+
+function removeItem(i){
+ basket.splice(i,1);
+ updateCart();
+}
+
+function openCart(){
+ document.getElementById('cartModal').classList.add('open');
+}
+
+function closeCart(){
+ document.getElementById('cartModal').classList.remove('open');
+}
+
+document.getElementById('cartModal').addEventListener('click',e=>{
+ if(e.target.id==='cartModal')closeCart();
+});
+
+function filterMenu(category,button){
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+ button.classList.add('active');
+
+ document.querySelectorAll('.food-card').forEach(card=>{
+  card.style.display=
+   category==='all'||card.dataset.category===category?'block':'none';
+ });
+}
+
+const dateInput=document.getElementById('guestDate');
+dateInput.min=new Date().toLocaleDateString('en-CA');
+
+document.getElementById('reservationForm').addEventListener('submit',e=>{
+ e.preventDefault();
+
+ const name=document.getElementById('guestName').value;
+ const phone=document.getElementById('guestPhone').value;
+ const date=document.getElementById('guestDate').value;
+ const time=document.getElementById('guestTime').value;
+ const guests=document.getElementById('guestCount').value;
+ const notes=document.getElementById('guestNotes').value;
+
+ const message=`Hello The Lucky 7 Cafe! I'd like to request a table.
+
+Name: ${name}
+Phone: ${phone}
+Date: ${date}
+Time: ${time}
+Guests: ${guests}
+Notes: ${notes}`;
+
+ document.getElementById('reservationStatus').textContent=
+ 'Opening your messaging app. Please send the request and wait for confirmation from the cafe.';
+
+ window.location.href='sms:+13176045085?body='+encodeURIComponent(message);
+});
+
+document.getElementById('orderForm').addEventListener('submit',e=>{
+ e.preventDefault();
+
+ if(!basket.length){
+  document.getElementById('orderStatus').textContent=
+  'Please add at least one menu item first.';
+  return;
+ }
+
+ const message=`Hello The Lucky 7 Cafe! I'd like to request a pickup order.
+
+Name: ${document.getElementById('orderName').value}
+Phone: ${document.getElementById('orderPhone').value}
+Items: ${basket.join(', ')}
+Pickup: ${document.getElementById('pickupTime').value}
+Notes: ${document.getElementById('orderNotes').value}`;
+
+ document.getElementById('orderStatus').textContent=
+ 'Opening your messaging app. Please send your request and call the cafe to confirm prices and pickup time.';
+
+ window.location.href='sms:+13176045085?body='+encodeURIComponent(message);
+});
+
+document.querySelectorAll('nav a').forEach(link=>{
+ link.addEventListener('click',()=>{
+  document.querySelector('nav').classList.remove('show');
+ });
+});
+</script>
+</body>
+</html>
